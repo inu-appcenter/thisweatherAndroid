@@ -1,0 +1,85 @@
+package com.example.thisweather;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
+
+public class InitialActivity extends AppCompatActivity {
+
+    ViewPager viewPager;
+    ViewPagerIndicator viewPagerIndicator;
+    ImageView nextButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_initial);
+
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPagerIndicator = (ViewPagerIndicator) findViewById(R.id.view_pager_indicator);
+        nextButton = (ImageView) findViewById(R.id.iv_next);
+
+        setViewpager();
+        setButton();
+    }
+
+    private void setViewpager() {
+        FragmentManager fm = getSupportFragmentManager();
+        TabPagerAdapter pagerAdapter = new TabPagerAdapter(fm);
+
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setCurrentItem(0);
+
+        viewPagerIndicator.setupWithViewPager(viewPager);
+        viewPagerIndicator.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+            @Override
+            public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(final int position) {
+                if(position == 2){
+                    setFinish();
+                }
+                else{
+                    nextButton.setImageResource(R.drawable.btn_next);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(final int state) {
+            }
+        });
+
+    }
+
+    private void setButton() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+            }
+        });
+    }
+
+    public void setFinish() {
+        nextButton.setImageResource(R.drawable.btn_finish);
+        final Intent intent = new Intent(this,MainActivity.class);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+}
