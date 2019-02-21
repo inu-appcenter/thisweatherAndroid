@@ -1,18 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#fdc31a"
+    android:orientation="vertical">
 
-    <TextView
+<Toolbar
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:contentInsetLeft="0dp"
+    android:contentInsetStart="0dp"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp"
+    android:contentInsetRight="0dp"
+    android:contentInsetEnd="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetEnd="0dp">
+    <ImageView
+        android:id="@+id/icon_menu_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/icon_menu_black"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="8월 24일 수요일"
+        android:textColor="#262626"
+        android:textSize="19sp" />
+    <ImageView
+        android:id="@+id/icon_retry_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="right"
+        android:src="@drawable/icon_retry_black" />
+</Toolbar>
+
+
+    <ImageView
+        android:id="@+id/back_under"
+        android:layout_width="match_parent"
+        android:layout_height="344.6dp"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/back_under" />
+
+    <ImageView
+        android:id="@+id/body_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/head_sunny"
+        android:layout_marginTop="138dp"
+        app:srcCompat="@drawable/body_15" />
+
+    <ImageView
+        android:id="@+id/head_sunny"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/head_sunny" />
+
+    <ImageView
+        android:id="@+id/heart"
+        android:layout_width="34dp"
+        android:layout_height="32dp"
+        android:src="@drawable/heart"
+        android:layout_toLeftOf="@id/head_sunny"
+        android:layout_marginTop="70dp"
+        />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="110dp"
+        android:layout_height="72dp"
+        android:layout_below="@+id/body_15"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="50dp"
+        android:text="27°"
+        android:textSize="70dp" />
+
+    <ImageView
+        android:id="@+id/wthIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/body_15"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="75dp"
+        android:src="@drawable/icon_sunny" />
+
+    <TextView
+        android:id="@+id/wthtext"
+        android:layout_width="50dp"
+        android:layout_height="22dp"
+        android:layout_below="@+id/wthIcon"
+        android:text="맑음"
+        android:layout_marginLeft="125dp"
+        android:textSize="15dp" />
+    <ImageView
+        android:id="@+id/line_sunny1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line_sunny"
+        android:layout_toLeftOf="@id/wthInfo"
+        android:layout_below="@+id/body_15"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="4dp"
+
+        />
+    <ImageView
+        android:id="@+id/line_sunny2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line_sunny"
+        android:layout_toRightOf="@id/wthInfo"
+        android:layout_below="@+id/body_15"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="4dp"
+        />
+    <TextView
+        android:id="@+id/wthInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기적같이 맑은 날"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/temp"
+        android:layout_marginTop="18dp"
+        android:textColor="#fdc31a"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below    ="@id/wthInfo"
+        android:layout_centerHorizontal="true"
+        android:weightSum       ="1">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+
+            >
+            <TextView
+                android:id="@+id/mintemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="#262626"
+                tools:text="최저"
+                />
+            <TextView
+                android:id="@+id/maxtemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="#262626"
+                tools:text="최고"
+                android:layout_below="@id/mintemp"
+                />
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/windspeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="풍속"
+                android:textSize="14dp"
+                android:textColor="#262626"
+                />
+            <TextView
+                android:id="@+id/rainfall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="강수량"
+                android:textSize="14dp"
+                android:textColor="#262626"
+                />
+            <TextView
+                android:id="@+id/pm10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="미세먼지"
+                android:textSize="14dp"
+                android:textColor="#262626"
+                />
+            <TextView
+                android:id="@+id/sensetemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="체감온도"
+                android:textSize="14dp"
+                android:textColor="#262626"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
