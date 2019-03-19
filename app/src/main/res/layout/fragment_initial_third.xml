@@ -104,9 +104,9 @@
             android:layout_marginTop="37.6dp"
             android:layout_centerInParent="true"
             android:fontFamily="@font/sf_pro_text_semibold"
-            app:sunday_first_day="true"
             app:highlight_color="#0957d3"
-            app:background_color="#FFFFFF"/>
+            app:background_color="#FFFFFF"
+            app:weekend_text_color="#262626"/>
     </RelativeLayout>
 
 </LinearLayout>

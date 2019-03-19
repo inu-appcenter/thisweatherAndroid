@@ -18,7 +18,8 @@ public class InitialFirstFragment  extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_initial_first, null);
 
-        LottieAnimationView animationView = view.findViewById(R.id.animation_view1);
+        LottieAnimationView animationView = view.findViewById(R.id.lav_tutorial1);
+        animationView.playAnimation();
 //        animationView.setImageAssetDelegate(new ImageAssetDelegate() {
 //            @Override public Bitmap fetchBitmap(LottieImageAsset asset) {
 //                if (downloadedBitmap == null) {

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
 
-public class InitialActivity extends AppCompatActivity {
+public class InitialActivity extends FragmentActivity {
 
     ViewPager viewPager;
     ViewPagerIndicator viewPagerIndicator;
@@ -27,7 +27,7 @@ public class InitialActivity extends AppCompatActivity {
         nextButton = (ImageView) findViewById(R.id.iv_next);
 
         setViewpager();
-        setButton();
+        setNext();
     }
 
     private void setViewpager() {
@@ -42,7 +42,6 @@ public class InitialActivity extends AppCompatActivity {
         {
             @Override
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
-
             }
 
             @Override
@@ -51,7 +50,7 @@ public class InitialActivity extends AppCompatActivity {
                     setFinish();
                 }
                 else{
-                    nextButton.setImageResource(R.drawable.btn_next);
+                    setNext();
                 }
             }
 
@@ -59,10 +58,10 @@ public class InitialActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(final int state) {
             }
         });
-
     }
 
-    private void setButton() {
+    private void setNext() {
+        nextButton.setImageResource(R.drawable.btn_next);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

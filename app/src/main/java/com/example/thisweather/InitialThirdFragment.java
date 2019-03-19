@@ -43,6 +43,7 @@ public class InitialThirdFragment  extends Fragment {
         WeekdaysPicker weekdaysPicker = (WeekdaysPicker) view.findViewById(R.id.wp_weekdays);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"res/font/sf_pro_text_semibold.ttf");
 //        weekdaysPicker.setT
+        weekdaysPicker.selectDay(0);
 
         return view;
     }
