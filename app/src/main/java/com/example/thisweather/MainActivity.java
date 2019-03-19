@@ -1,6 +1,7 @@
 package com.example.thisweather;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
     private void setLionHead(String data2) {
         ImageView imageView = findViewById(R.id.lion_head);
         ImageView heart = findViewById(R.id.heart);
-        RelativeLayout relativeLayout = findViewById(R.id.rl_main);
+        ConstraintLayout relativeLayout = findViewById(R.id.rl_main);
         ImageView icon = findViewById(R.id.wthIcon);
         TextView textView = findViewById(R.id.wthtext);
         ImageView menu = findViewById(R.id.menu);

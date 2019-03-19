@@ -1,171 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/left_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical"
+        android:layout_marginStart="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/right_section"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/left_section"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="50.9dp"
-            >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="9.8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/mintemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#262626"
-                    android:text="최저"
-                    android:fontFamily="@font/aritaum_semi_bold"
-                    />
-                <TextView
-                    android:id="@+id/tv_mintemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="18.7dp"
-                    android:textSize="25sp"
-                    android:textColor="#00bdff"
-                    android:fontFamily="@font/aritaum_semi_bold"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="9.8dp"
-                android:layout_marginTop="11.3dp">
-                <TextView
-                    android:id="@+id/maxtemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#262626"
-                    android:text="최고"
-                    android:fontFamily="@font/aritaum_semi_bold"
-                    />
-                <TextView
-                    android:id="@+id/tv_maxtemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="18.7dp"
-                    android:textSize="25sp"
-                    android:textColor="#f73826"
-                    android:fontFamily="@font/aritaum_semi_bold"
-                    />
-            </LinearLayout>
+            android:layout_marginLeft="9.8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/tv_yesterday"
+                android:id="@+id/mintemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#7c7c7c"
-                android:layout_marginTop="12.8dp"
-                android:text="어제보다     도 높아요!"
-                android:fontFamily="@font/aritaum_medium"
-                />
+                android:fontFamily="@font/aritaum_semi_bold"
+                android:text="최저"
+                android:textColor="#262626"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_mintemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18.7dp"
+                android:fontFamily="@font/aritaum_semi_bold"
+                android:textColor="#00bdff"
+                android:textSize="25sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/right_section"
-            android:orientation="horizontal"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp">
-            <LinearLayout
+            android:layout_marginLeft="9.8dp"
+            android:layout_marginTop="11.3dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/maxtemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/windspeed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="풍속"
-                    android:textSize="14dp"
-                    android:textColor="#262626"
-                    android:fontFamily="@font/aritaum_semi_bold"
-                    />
-                <TextView
-                    android:id="@+id/rainfall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="강수확률"
-                    android:textSize="14dp"
-                    android:textColor="#262626"
-                    android:layout_marginTop="10.7dp"
-                    android:fontFamily="@font/aritaum_semi_bold"
-                    />
-                <TextView
-                    android:id="@+id/pm10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="미세먼지"
-                    android:textSize="14dp"
-                    android:textColor="#262626"
-                    android:layout_marginTop="10.7dp"
-                    android:fontFamily="@font/aritaum_semi_bold"
-                    />
-                <TextView
-                    android:id="@+id/sensetemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="체감온도"
-                    android:textSize="14dp"
-                    android:textColor="#262626"
-                    android:layout_marginTop="10.7dp"
-                    android:fontFamily="@font/aritaum_semi_bold"
-                    />
-            </LinearLayout>
-            <LinearLayout
+                android:fontFamily="@font/aritaum_semi_bold"
+                android:text="최고"
+                android:textColor="#262626"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_maxtemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="21.9dp"
-                android:gravity="center_horizontal">
-                <TextView
-                    android:id="@+id/tv_windspeed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#262626"
-                    android:fontFamily="@font/aritaum_medium"
-                    />
-                <TextView
-                    android:id="@+id/tv_rainfall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#262626"
-                    android:layout_marginTop="10.7dp"
-                    android:fontFamily="@font/aritaum_medium"
-                    />
-                <TextView
-                    android:id="@+id/tv_pm10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#262626"
-                    android:layout_marginTop="10.7dp"
-                    android:fontFamily="@font/aritaum_medium"
-                    />
-                <TextView
-                    android:id="@+id/tv_sensetemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#262626"
-                    android:layout_marginTop="10.7dp"
-                    android:fontFamily="@font/aritaum_medium"
-                    />
-            </LinearLayout>
+                android:layout_marginLeft="18.7dp"
+                android:fontFamily="@font/aritaum_semi_bold"
+                android:textColor="#f73826"
+                android:textSize="25sp" />
         </LinearLayout>
-    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_yesterday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12.8dp"
+            android:fontFamily="@font/aritaum_medium"
+            android:text="어제보다     도 높아요!"
+            android:textColor="#7c7c7c"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/left_section">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/windspeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aritaum_semi_bold"
+                android:text="풍속"
+                android:textColor="#262626"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/rainfall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.7dp"
+                android:fontFamily="@font/aritaum_semi_bold"
+                android:text="강수확률"
+                android:textColor="#262626"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/pm10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.7dp"
+                android:fontFamily="@font/aritaum_semi_bold"
+                android:text="미세먼지"
+                android:textColor="#262626"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/sensetemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.7dp"
+                android:fontFamily="@font/aritaum_semi_bold"
+                android:text="체감온도"
+                android:textColor="#262626"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21.9dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_windspeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aritaum_medium"
+                android:textColor="#262626"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_rainfall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.7dp"
+                android:fontFamily="@font/aritaum_medium"
+                android:textColor="#262626"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_pm10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.7dp"
+                android:fontFamily="@font/aritaum_medium"
+                android:textColor="#262626"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_sensetemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.7dp"
+                android:fontFamily="@font/aritaum_medium"
+                android:textColor="#262626"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
