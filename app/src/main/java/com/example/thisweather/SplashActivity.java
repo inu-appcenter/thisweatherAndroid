@@ -2,6 +2,7 @@ package com.example.thisweather;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,6 +22,9 @@ public class SplashActivity extends Activity {
 //                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
         );
 
+        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        boolean init = pref.getBoolean("init", false);
+
         Thread SplashThread = new Thread() {
             @Override
             public void run() {
@@ -29,8 +33,14 @@ public class SplashActivity extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(SplashActivity.this, InitialActivity.class);
-                startActivity(intent);
+                if (init){
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(SplashActivity.this, InitialActivity.class);
+                    startActivity(intent);
+                }
                 finish();
             }
         };

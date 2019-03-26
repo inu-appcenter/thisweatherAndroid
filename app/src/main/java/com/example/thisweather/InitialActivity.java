@@ -1,6 +1,8 @@
 package com.example.thisweather;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -72,11 +74,15 @@ public class InitialActivity extends FragmentActivity {
 
     public void setFinish() {
         nextButton.setImageResource(R.drawable.btn_finish);
+        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
         final Intent intent = new Intent(this,MainActivity.class);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intent);
+                editor.putBoolean("init", true);
+                editor.apply();
                 finish();
             }
         });
