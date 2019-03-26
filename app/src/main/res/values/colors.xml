@@ -8,8 +8,8 @@
     <color name="backgroundSnowy">#CEEEF4</color>
     <color name="backgroundDefault">#FFFFFF</color>
     <color name="subText">#000000</color>
-    <color name="statusSunny">#33FDC31A</color>
-    <color name="statusBlue">#330957d3</color>
-    <color name="statusRainy">#335B6F8C</color>
-    <color name="statusSnowy">#33CEEEF4</color>
+    <color name="statusSunny"> #cb9c15</color>
+    <color name="statusBlue">#0746a9</color>
+    <color name="statusRainy">#495970</color>
+    <color name="statusSnowy">#a5bfc3</color>
 </resources>

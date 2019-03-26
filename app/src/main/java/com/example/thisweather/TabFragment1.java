@@ -52,7 +52,7 @@ public class TabFragment1 extends Fragment {
         super.onResume();
         setData(d_max, d_min, d_rainfall, d_windspeed, d_sensetemp);
         setDust(d_dust);
-        Log.d("test", "resume: "+d_dust);
+        Log.d("test", "resume: " + d_windspeed);
     }
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -64,6 +64,7 @@ public class TabFragment1 extends Fragment {
             d_windspeed = intent.getStringExtra("windspeed");
             d_sensetemp = intent.getStringExtra("sensetemp");
             setData(d_max, d_min, d_rainfall, d_windspeed, d_sensetemp);
+            Log.d("test", "broad: " + d_windspeed);
         }
     };
 
@@ -72,7 +73,7 @@ public class TabFragment1 extends Fragment {
         public void onReceive(Context context, Intent intent) {
             d_dust = intent.getStringExtra("dust");
             setDust(d_dust);
-            Log.d("test", "broad: "+d_dust);
+//            Log.d("test", "broad: "+d_dust);
         }
     };
 

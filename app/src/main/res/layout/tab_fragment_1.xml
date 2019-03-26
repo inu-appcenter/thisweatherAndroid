@@ -8,17 +8,16 @@
         android:id="@+id/left_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:orientation="vertical"
         android:layout_marginStart="50dp"
-        app:layout_constraintEnd_toStartOf="@+id/right_section"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/right_section"
+        app:layout_constraintBottom_toBottomOf="@id/right_section">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="9.8dp"
+            android:layout_marginStart="9.8dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -35,7 +34,7 @@
                 android:id="@+id/tv_mintemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="18.7dp"
+                android:layout_marginStart="18.7dp"
                 android:fontFamily="@font/aritaum_semi_bold"
                 android:textColor="#00bdff"
                 android:textSize="25sp" />
@@ -44,7 +43,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="9.8dp"
+            android:layout_marginStart="9.8dp"
             android:layout_marginTop="11.3dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -62,7 +61,7 @@
                 android:id="@+id/tv_maxtemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="18.7dp"
+                android:layout_marginStart="18.7dp"
                 android:fontFamily="@font/aritaum_semi_bold"
                 android:textColor="#f73826"
                 android:textSize="25sp" />
@@ -83,12 +82,13 @@
         android:id="@+id/right_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_marginEnd="50dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/left_section">
+        app:layout_constraintTop_toTopOf="@id/left_section"
+        app:layout_constraintBottom_toBottomOf="@id/left_section">
+    <!--app:layout_constraintHorizontal_bias="1"-->
+    <!--app:layout_constraintStart_toEndOf="@+id/left_section"-->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                 android:fontFamily="@font/aritaum_semi_bold"
                 android:text="풍속"
                 android:textColor="#262626"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/rainfall"
@@ -112,7 +112,7 @@
                 android:fontFamily="@font/aritaum_semi_bold"
                 android:text="강수확률"
                 android:textColor="#262626"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/pm10"
@@ -122,7 +122,7 @@
                 android:fontFamily="@font/aritaum_semi_bold"
                 android:text="미세먼지"
                 android:textColor="#262626"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/sensetemp"
@@ -132,13 +132,13 @@
                 android:fontFamily="@font/aritaum_semi_bold"
                 android:text="체감온도"
                 android:textColor="#262626"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21.9dp"
+            android:layout_marginStart="21.9dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
