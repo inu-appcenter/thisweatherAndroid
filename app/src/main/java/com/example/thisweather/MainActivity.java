@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Retrofit retrofit;
     RetrofitService service;
     DrawerLayout drawer;
+    int dust;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getLocalData(JsonArray array) {
-//        String data, data2, data3, data[3], data[4], data[5];
         String[] data = new String[6];
         if (array != null) {
             data[0] = array.get(0).getAsJsonObject().get("temp").getAsString();
@@ -189,6 +189,9 @@ public class MainActivity extends AppCompatActivity {
             else {
                 intent.putExtra("windspeed", getNoPoint(data[4]) + "m/s");
             }
+            if (dust > 35) {
+                setLionHead("미세먼지");
+            }
         }
         else {
             intent.putExtra("windspeed", getNoPoint(data[4]) + "m/s");
@@ -225,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLionHead(String data) {
-        ImageView imageView = findViewById(R.id.lion_head);
+        ImageView head = findViewById(R.id.lion_head);
         ImageView heart = findViewById(R.id.heart);
         ConstraintLayout relativeLayout = findViewById(R.id.rl_main);
         ImageView icon = findViewById(R.id.wthIcon);
@@ -233,169 +236,206 @@ public class MainActivity extends AppCompatActivity {
         ImageView menu = findViewById(R.id.menu);
         TextView time = findViewById(R.id.Time);
         ImageView retry = findViewById(R.id.retry);
-        ImageView lineLeft = findViewById(R.id.line_left);
-        ImageView lineRight = findViewById(R.id.line_right);
+        View lineLeft = findViewById(R.id.line_left);
+        View lineRight = findViewById(R.id.line_right);
         TextView info = findViewById(R.id.wthInfo);
         ImageView wind = findViewById(R.id.wind);
         ImageView rain = findViewById(R.id.rain);
         ImageView snow = findViewById(R.id.snow);
+        ImageView dust = findViewById(R.id.dust);
 
         heart.setImageResource(R.drawable.heart);
         wind.setImageResource(R.drawable.wind);
         rain.setImageResource(R.drawable.rain);
         snow.setImageResource(R.drawable.snow);
+        dust.setImageResource(R.drawable.dust);
 
         switch (data){
+            case  "미세먼지": {
+                relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundDust));
+                heart.setVisibility(View.INVISIBLE);
+                menu.setImageResource(R.drawable.icon_menu_black);
+                time.setTextColor(ContextCompat.getColor(this, R.color.mainText));
+                retry.setImageResource(R.drawable.icon_retry_black);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundDust));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundDust));
+                info.setTextColor(ContextCompat.getColor(this, R.color.backgroundDust));
+                info.setText("최악이야 미세먼지");
+                wind.setVisibility(View.INVISIBLE);
+                snow.setVisibility(View.INVISIBLE);
+                rain.setVisibility(View.INVISIBLE);
+                dust.setVisibility(View.VISIBLE);
+                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusDust));
+                break;
+            }
             case "바람": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
-                imageView.setImageResource(R.drawable.head_cloudy);
+                head.setPadding(Math.round(57 * getResources().getDisplayMetrics().density), 0, 0, 0);
+                head.setImageResource(R.drawable.head_cloudy);
                 heart.setVisibility(View.INVISIBLE);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
-                lineLeft.setImageResource(R.drawable.line_windy);
-                lineRight.setImageResource(R.drawable.line_windy);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 info.setTextColor(ContextCompat.getColor(this, R.color.mainBlue));
                 info.setText("장난아닌 송도풍");
                 wind.setVisibility(View.VISIBLE);
                 snow.setVisibility(View.INVISIBLE);
                 rain.setVisibility(View.INVISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusBlue));
                 break;
             }
             case "맑음": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSunny));
-                imageView.setImageResource(R.drawable.head_sunny);
+                head.setPadding(0, 0, 0, 0);
+                head.setImageResource(R.drawable.head_sunny);
                 heart.setVisibility(View.VISIBLE);
                 icon.setImageResource(R.drawable.icon_sunny);
                 textView.setText(data);
-                lineLeft.setImageResource(R.drawable.line_sunny);
-                lineRight.setImageResource(R.drawable.line_sunny);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainOrange));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainOrange));
                 info.setTextColor(ContextCompat.getColor(this, R.color.mainOrange));
                 info.setText("기적같이 맑은 날");
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.INVISIBLE);
                 rain.setVisibility(View.INVISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusSunny));
                 break;
             }
             case "구름 조금": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSunny));
-                imageView.setImageResource(R.drawable.head_sunny);
+                head.setPadding(0, 0, 0, 0);
+                head.setImageResource(R.drawable.head_sunny);
                 heart.setVisibility(View.VISIBLE);
                 icon.setImageResource(R.drawable.icon_sunny);
                 textView.setText(data);
-                lineLeft.setImageResource(R.drawable.line_sunny);
-                lineRight.setImageResource(R.drawable.line_sunny);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainOrange));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainOrange));
                 info.setTextColor(ContextCompat.getColor(this, R.color.mainOrange));
                 info.setText("기적같이 맑은 날");
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.INVISIBLE);
                 rain.setVisibility(View.INVISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusSunny));
                 break;
             }
             case "구름 많음": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
-                imageView.setImageResource(R.drawable.head_sunny);
+                head.setPadding(0, 0, 0, 0);
+                head.setImageResource(R.drawable.head_sunny);
                 heart.setVisibility(View.VISIBLE);
                 icon.setImageResource(R.drawable.icon_cloudy);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
-                lineLeft.setImageResource(R.drawable.line_windy);
-                lineRight.setImageResource(R.drawable.line_windy);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 info.setTextColor(ContextCompat.getColor(this, R.color.mainBlue));
                 info.setText("꾸리꾸리 흐린 날");
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.INVISIBLE);
                 rain.setVisibility(View.INVISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusBlue));
                 break;
             }
             case "흐림": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
-                imageView.setImageResource(R.drawable.head_sunny);
+                head.setPadding(0, 0, 0, 0);
+                head.setImageResource(R.drawable.head_sunny);
                 heart.setVisibility(View.VISIBLE);
                 icon.setImageResource(R.drawable.icon_cloudy);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
-                lineLeft.setImageResource(R.drawable.line_windy);
-                lineRight.setImageResource(R.drawable.line_windy);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 info.setTextColor(ContextCompat.getColor(this, R.color.mainBlue));
                 info.setText("꾸리꾸리 흐린 날");
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.INVISIBLE);
                 rain.setVisibility(View.INVISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusBlue));
                 break;
             }
             case "비": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
-                imageView.setImageResource(R.drawable.head_rain);
+                head.setPadding(0, 0, 0, 0);
+                head.setImageResource(R.drawable.head_rain);
                 heart.setVisibility(View.INVISIBLE);
                 icon.setImageResource(R.drawable.icon_rain);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
-                lineLeft.setImageResource(R.drawable.line_rainy);
-                lineRight.setImageResource(R.drawable.line_rainy);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
                 info.setTextColor(ContextCompat.getColor(this, R.color.backgroundRainy));
                 info.setText("추적추적 비와요");
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.INVISIBLE);
                 rain.setVisibility(View.VISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusRainy));
                 break;
             }
             case "눈/비": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
-                imageView.setImageResource(R.drawable.head_rain);
+                head.setPadding(0, 0, 0, 0);
+                head.setImageResource(R.drawable.head_rain);
                 heart.setVisibility(View.INVISIBLE);
                 icon.setImageResource(R.drawable.icon_rainsnow);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
-                lineLeft.setImageResource(R.drawable.line_rainy);
-                lineRight.setImageResource(R.drawable.line_rainy);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
                 info.setTextColor(ContextCompat.getColor(this, R.color.backgroundRainy));
                 info.setText("추적추적 비와요");
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.INVISIBLE);
                 rain.setVisibility(View.VISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusRainy));
                 break;
             }
             case "눈": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSnowy));
-                imageView.setImageResource(R.drawable.head_snow);
+                head.setPadding(0, 0, 0, 0);
+                head.setImageResource(R.drawable.head_snow);
                 heart.setVisibility(View.INVISIBLE);
                 icon.setImageResource(R.drawable.icon_snow);
                 textView.setText(data);
-                lineLeft.setImageResource(R.drawable.line_snowy);
-                lineRight.setImageResource(R.drawable.line_snowy);
+                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.subText));
+                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.subText));
                 info.setTextColor(ContextCompat.getColor(this, R.color.subText));
                 info.setText("포근포근 눈와요");
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.VISIBLE);
                 rain.setVisibility(View.INVISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusSnowy));
                 break;
             }
             default: {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSunny));
-                imageView.setImageResource(R.drawable.head_sunny);
+                head.setPadding(0, 0, 0, 0);
+                head.setImageResource(R.drawable.head_sunny);
                 icon.setImageResource(R.drawable.icon_sunny);
                 textView.setText(data);
                 heart.setVisibility(View.INVISIBLE);
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.INVISIBLE);
                 rain.setVisibility(View.INVISIBLE);
+                dust.setVisibility(View.INVISIBLE);
                 break;
             }
         }
@@ -462,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFineDust(String string) {
         Log.d("test", "setFineDust, " + string);
-        int dust = Integer.parseInt(string);
+        dust = Integer.parseInt(string);
         Intent intent = new Intent("dust");
         if (dust <= 15){
             intent.putExtra("dust", "좋음");
@@ -485,5 +525,13 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    public class TimeItem {
+
+    }
+
+    public class WeekItem {
+
     }
 }
