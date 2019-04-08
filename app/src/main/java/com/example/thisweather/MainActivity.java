@@ -52,21 +52,35 @@ public class MainActivity extends AppCompatActivity {
         service = retrofit.create(RetrofitService.class);
 
         getLocalForecast();
+        getWeekForecast();
+        getFineDust();
+    }
 
+    private void getWeekForecast() {
         Call<JsonObject> weekForecast = service.weekForecast();
         weekForecast.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                Log.d("test","week, " + response.body().toString());
+                JsonArray array = response.body().get("data").getAsJsonArray();
+                Log.d("test","week, " + array);
+                getWeekData(array);
             }
-
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.d("test","week, " + t);
             }
         });
+    }
 
-        getFineDust();
+    private void getWeekData(JsonArray array) {
+        String data1 = array.get(0).getAsJsonObject().get("tmEf").getAsString();
+        String data2 = array.get(0).getAsJsonObject().get("wf").getAsString();
+        String data3 = array.get(0).getAsJsonObject().get("tmn").getAsString();
+        String data4 = array.get(0).getAsJsonObject().get("tmx").getAsString();
+        Log.d("testt", data1);
+        Log.d("testt", data2);
+        Log.d("testt", data3);
+        Log.d("testt", data4);
     }
 
     private void setViewpager() {
@@ -84,14 +98,14 @@ public class MainActivity extends AppCompatActivity {
         localForecast.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                JsonArray array = response.body().get("wid").getAsJsonObject().get("body").getAsJsonArray().get(0).getAsJsonObject().get("data").getAsJsonArray();
+                JsonArray array = response.body().get("rss").getAsJsonObject().get("channel").getAsJsonArray().get(0).getAsJsonObject().get("item").getAsJsonArray().get(0).getAsJsonObject().get("description").getAsJsonArray().get(0).getAsJsonObject().get("body").getAsJsonArray().get(0).getAsJsonObject().get("data").getAsJsonArray();
                 Log.d("test","local, " + array);
-                getData(array);
+                getLocalData(array);
             }
-
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.d("test","local, " + t +"");
+                getLocalData(null);
             }
         });
     }
@@ -117,78 +131,100 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getData(JsonArray array) {
-        String data = array.get(0).getAsJsonObject().get("temp").getAsString();
-        String data2 = array.get(0).getAsJsonObject().get("wfKor").getAsString();
-        String data3 = array.get(0).getAsJsonObject().get("tmx").getAsString();
-        String data4 = array.get(0).getAsJsonObject().get("tmn").getAsString();
-        String data5 = array.get(0).getAsJsonObject().get("ws").getAsString();
-        String data6 = array.get(0).getAsJsonObject().get("pop").getAsString();
-        Log.d("test", data);
-        Log.d("test", data2);
-        Log.d("test", data3);
-        Log.d("test", data4);
-        Log.d("test", data5);
-        Log.d("test", data6);
+    private void getLocalData(JsonArray array) {
+//        String data, data2, data3, data[3], data[4], data[5];
+        String[] data = new String[6];
+        if (array != null) {
+            data[0] = array.get(0).getAsJsonObject().get("temp").getAsString();
+            data[1] = array.get(0).getAsJsonObject().get("wfKor").getAsString();
+            data[2] = array.get(0).getAsJsonObject().get("tmx").getAsString();
+            data[3] = array.get(0).getAsJsonObject().get("tmn").getAsString();
+            data[4] = array.get(0).getAsJsonObject().get("ws").getAsString();
+            data[5] = array.get(0).getAsJsonObject().get("pop").getAsString();
+            Log.d("test", data[0]);
+            Log.d("test", data[1]);
+            Log.d("test", data[2]);
+            Log.d("test", data[3]);
+            Log.d("test", data[4]);
+            Log.d("test", data[5]);
+        }
+        else{
+            for (int i = 0; i < 6; i++){
+                data[i] = "";
+            }
+        }
 
         Intent intent = new Intent("data");
 
-        String str = getNoPoint(data);
+        String str = getNoPoint(data[0]);
         TextView textView = findViewById(R.id.temp);
         textView.setText(str + "°");
 
-        int temper = Integer.parseInt(str);
+        int temper = 0;
+        if (!str.equals("")) {
+            temper = Integer.parseInt(str);
+        }
         setLionBody(temper);
-        setLionHead(data2);
+        setLionHead(data[1]);
 
         int i = 0;
-        while (data3.equals("-999.0")){
+        while (data[2].equals("-999.0")){
             i++;
-            data3 = array.get(i).getAsJsonObject().get("tmx").getAsString();
+            data[2] = array.get(i).getAsJsonObject().get("tmx").getAsString();
         }
-        intent.putExtra("max", getNoPoint(data3) + "°");
+        intent.putExtra("max", getNoPoint(data[2]) + "°");
 
         int j = 0;
-        while (data4.equals("-999.0")){
+        while (data[3].equals("-999.0")){
             j++;
-            data4 = array.get(j).getAsJsonObject().get("tmn").getAsString();
+            data[3] = array.get(j).getAsJsonObject().get("tmn").getAsString();
         }
-        intent.putExtra("min", getNoPoint(data4) + "°");
+        intent.putExtra("min", getNoPoint(data[3]) + "°");
 
-        if (data2.equals("맑음") || data2.equals("구름 조금") || data2.equals("구름 많음") || data2.equals("흐림")) {
-            if (Double.parseDouble(data5) >= 10.0) {
+        if (data[1].equals("맑음") || data[1].equals("구름 조금") || data[1].equals("구름 많음") || data[1].equals("흐림")) {
+            if (Double.parseDouble(data[4]) >= 10.0) {
                 setLionHead("바람");
-                intent.putExtra("windspeed", getNoPoint(data5) + "m/s");
+                intent.putExtra("windspeed", getNoPoint(data[4]) + "m/s");
             }
             else {
-                intent.putExtra("windspeed", getNoPoint(data5) + "m/s");
+                intent.putExtra("windspeed", getNoPoint(data[4]) + "m/s");
             }
         }
         else {
-            intent.putExtra("windspeed", getNoPoint(data5) + "m/s");
+            intent.putExtra("windspeed", getNoPoint(data[4]) + "m/s");
         }
 
-        intent.putExtra("rainfall", data6 + "%");
+        intent.putExtra("rainfall", data[5] + "%");
 
-        intent.putExtra("sensetemp", getWindChill(data, data5) + "°");
+        intent.putExtra("sensetemp", getWindChill(data[0], data[4]) + "°");
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
-    private String getWindChill(String data, String data5) {
-        double temp = Double.parseDouble(data);
-        double ws = Double.parseDouble(data5);
+    private String getWindChill(String data1, String data2) {
+        if (!data1.equals("") && !data2.equals("")) {
+            double temp = Double.parseDouble(data1);
+            double ws = Double.parseDouble(data2);
 
-        double result = 13.12 + 0.6215 * temp - 11.37 * Math.pow(ws * 3.6, 0.16) + 0.3965 * temp * Math.pow(ws * 3.6, 0.16);
-        return getNoPoint(result + "");
+            double result = 13.12 + 0.6215 * temp - 11.37 * Math.pow(ws * 3.6, 0.16) + 0.3965 * temp * Math.pow(ws * 3.6, 0.16);
+            return getNoPoint(result + "");
+        }
+        else {
+            return "";
+        }
     }
 
     private String getNoPoint(String data) {
-        double n = Double.parseDouble(data);
-        return Math.round(n) + "";
+        if (!data.equals("")) {
+            double n = Double.parseDouble(data);
+            return Math.round(n) + "";
+        }
+        else{
+            return "";
+        }
     }
 
-    private void setLionHead(String data2) {
+    private void setLionHead(String data) {
         ImageView imageView = findViewById(R.id.lion_head);
         ImageView heart = findViewById(R.id.heart);
         ConstraintLayout relativeLayout = findViewById(R.id.rl_main);
@@ -209,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         rain.setImageResource(R.drawable.rain);
         snow.setImageResource(R.drawable.snow);
 
-        switch (data2){
+        switch (data){
             case "바람": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 imageView.setImageResource(R.drawable.head_cloudy);
@@ -232,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.head_sunny);
                 heart.setVisibility(View.VISIBLE);
                 icon.setImageResource(R.drawable.icon_sunny);
-                textView.setText(data2);
+                textView.setText(data);
                 lineLeft.setImageResource(R.drawable.line_sunny);
                 lineRight.setImageResource(R.drawable.line_sunny);
                 info.setTextColor(ContextCompat.getColor(this, R.color.mainOrange));
@@ -248,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.head_sunny);
                 heart.setVisibility(View.VISIBLE);
                 icon.setImageResource(R.drawable.icon_sunny);
-                textView.setText(data2);
+                textView.setText(data);
                 lineLeft.setImageResource(R.drawable.line_sunny);
                 lineRight.setImageResource(R.drawable.line_sunny);
                 info.setTextColor(ContextCompat.getColor(this, R.color.mainOrange));
@@ -264,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.head_sunny);
                 heart.setVisibility(View.VISIBLE);
                 icon.setImageResource(R.drawable.icon_cloudy);
-                textView.setText(data2);
+                textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
@@ -283,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.head_sunny);
                 heart.setVisibility(View.VISIBLE);
                 icon.setImageResource(R.drawable.icon_cloudy);
-                textView.setText(data2);
+                textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
@@ -302,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.head_rain);
                 heart.setVisibility(View.INVISIBLE);
                 icon.setImageResource(R.drawable.icon_rain);
-                textView.setText(data2);
+                textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
@@ -321,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.head_rain);
                 heart.setVisibility(View.INVISIBLE);
                 icon.setImageResource(R.drawable.icon_rainsnow);
-                textView.setText(data2);
+                textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
                 time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
                 retry.setImageResource(R.drawable.icon_retry_white);
@@ -340,7 +376,7 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.head_snow);
                 heart.setVisibility(View.INVISIBLE);
                 icon.setImageResource(R.drawable.icon_snow);
-                textView.setText(data2);
+                textView.setText(data);
                 lineLeft.setImageResource(R.drawable.line_snowy);
                 lineRight.setImageResource(R.drawable.line_snowy);
                 info.setTextColor(ContextCompat.getColor(this, R.color.subText));
@@ -355,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSunny));
                 imageView.setImageResource(R.drawable.head_sunny);
                 icon.setImageResource(R.drawable.icon_sunny);
-                textView.setText(data2);
+                textView.setText(data);
                 heart.setVisibility(View.INVISIBLE);
                 wind.setVisibility(View.INVISIBLE);
                 snow.setVisibility(View.INVISIBLE);
@@ -417,7 +453,6 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("test","dust, " + t);

@@ -10,13 +10,13 @@ import retrofit2.http.Query;
 
 public interface RetrofitService {
 
-    @GET("week")
+    @GET("midterm")
     public Call<JsonObject> weekForecast();
 
     @GET("weather")
     public Call<JsonObject> localForecast();
 
-    @GET("dust")
+    @GET("PM10")
     public Call<ResponseBody> fineDust();
 
 }
