@@ -1,6 +1,7 @@
 package com.example.thisweather;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -10,18 +11,26 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import okhttp3.ResponseBody;
@@ -101,14 +110,73 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonArray array = response.body().get("rss").getAsJsonObject().get("channel").getAsJsonArray().get(0).getAsJsonObject().get("item").getAsJsonArray().get(0).getAsJsonObject().get("description").getAsJsonArray().get(0).getAsJsonObject().get("body").getAsJsonArray().get(0).getAsJsonObject().get("data").getAsJsonArray();
                 Log.d("test","local, " + array);
-                getLocalData(array);
+                setMain(array);
+                setTimeTab(array);
+
             }
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.d("test","local, " + t +"");
-                getLocalData(null);
+                setMain(null);
             }
         });
+    }
+
+    private void setTimeTab(JsonArray array) {
+        ArrayList<TimeAdapter.TimeItem> data = new ArrayList<>();
+        for (int i = 0; i < 8; i++){
+            data.add(new TimeAdapter.TimeItem(getNoPoint(array.get(i).getAsJsonObject().get("temp").getAsString()), array.get(i).getAsJsonObject().get("wfKor").getAsString(), array.get(i).getAsJsonObject().get("hour").getAsString()));
+        }
+
+        RecyclerView recyclerView = findViewById(R.id.rv_time);
+        TimeAdapter adapter = new TimeAdapter(data);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
+        LineChart timeChart = findViewById(R.id.lc_time);
+        ArrayList<Entry> value = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++){
+            value.add(new Entry(i, Float.parseFloat(data.get(i).getTemp())));
+            Log.d("test","value, " + Float.parseFloat(data.get(i).getTemp()));
+        }
+        setChart(value, timeChart);
+    }
+
+    private void setChart(ArrayList<Entry> value, LineChart lineChart) {
+        lineChart.setLogEnabled(true);
+        lineChart.setTouchEnabled(false);
+        lineChart.setPinchZoom(false);
+
+        LineDataSet dataSet = new LineDataSet(value, null);
+        dataSet.setLabel(null);
+
+        dataSet.setLineWidth(0.7f);
+        dataSet.setColor(ContextCompat.getColor(this, R.color.chartGray));
+        dataSet.setCircleColor(ContextCompat.getColor(this, R.color.mainOrange));
+        dataSet.setCircleRadius(3);
+        dataSet.setCircleHoleColor(Color.WHITE);
+        dataSet.setCircleHoleRadius(2.3f);
+        dataSet.setDrawCircleHole(true);
+        dataSet.setDrawCircles(true);
+        dataSet.setDrawValues(false);
+        dataSet.setDrawIcons(false);
+
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setEnabled(false);
+
+        YAxis yLAxis = lineChart.getAxisLeft();
+        yLAxis.setEnabled(false);
+
+        YAxis yRAxis = lineChart.getAxisRight();
+        yRAxis.setEnabled(false);
+
+        LineData lineData = new LineData();
+        lineData.addDataSet(dataSet);
+        lineChart.getDescription().setEnabled(false);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.setNoDataText("");
+        lineChart.setData(lineData);
+        lineChart.invalidate();
     }
 
     private void setToolbar() {
@@ -132,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getLocalData(JsonArray array) {
+    private void setMain(JsonArray array) {
         String[] data = new String[6];
         if (array != null) {
             data[0] = array.get(0).getAsJsonObject().get("temp").getAsString();
@@ -525,10 +593,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-    }
-
-    public class TimeItem {
-
     }
 
     public class WeekItem {

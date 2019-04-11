@@ -14,4 +14,6 @@
     <color name="statusRainy">#495970</color>
     <color name="statusSnowy">#a5bfc3</color>
     <color name="statusDust">#6f6852</color>
+    <color name="statusDefault">#cccccc</color>
+    <color name="chartGray">#9b9b9b</color>
 </resources>
