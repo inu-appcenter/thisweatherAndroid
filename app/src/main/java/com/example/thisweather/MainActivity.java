@@ -1,5 +1,6 @@
 package com.example.thisweather;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
@@ -61,36 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         service = retrofit.create(RetrofitService.class);
 
-        getLocalForecast();
-        getWeekForecast();
         getFineDust();
-    }
-
-    private void getWeekForecast() {
-        Call<JsonObject> weekForecast = service.weekForecast();
-        weekForecast.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                JsonArray array = response.body().get("data").getAsJsonArray();
-                Log.d("test","week, " + array);
-                getWeekData(array);
-            }
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d("test","week, " + t);
-            }
-        });
-    }
-
-    private void getWeekData(JsonArray array) {
-        String data1 = array.get(0).getAsJsonObject().get("tmEf").getAsString();
-        String data2 = array.get(0).getAsJsonObject().get("wf").getAsString();
-        String data3 = array.get(0).getAsJsonObject().get("tmn").getAsString();
-        String data4 = array.get(0).getAsJsonObject().get("tmx").getAsString();
-        Log.d("testt", data1);
-        Log.d("testt", data2);
-        Log.d("testt", data3);
-        Log.d("testt", data4);
     }
 
     private void setViewpager() {
@@ -112,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("test","local, " + array);
                 setMain(array);
                 setTimeTab(array);
-
             }
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
@@ -139,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
             value.add(new Entry(i, Float.parseFloat(data.get(i).getTemp())));
             Log.d("test","value, " + Float.parseFloat(data.get(i).getTemp()));
         }
-        setChart(value, timeChart);
+        setChart(value, timeChart, this);
     }
 
-    private void setChart(ArrayList<Entry> value, LineChart lineChart) {
+    public void setChart(ArrayList<Entry> value, LineChart lineChart, Context context) {
         lineChart.setLogEnabled(true);
         lineChart.setTouchEnabled(false);
         lineChart.setPinchZoom(false);
@@ -151,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
         dataSet.setLabel(null);
 
         dataSet.setLineWidth(0.7f);
-        dataSet.setColor(ContextCompat.getColor(this, R.color.chartGray));
-        dataSet.setCircleColor(ContextCompat.getColor(this, R.color.mainOrange));
+        dataSet.setColor(ContextCompat.getColor(context, R.color.chartGray));
+        dataSet.setCircleColor(ContextCompat.getColor(context, R.color.mainOrange));
         dataSet.setCircleRadius(3);
         dataSet.setCircleHoleColor(Color.WHITE);
         dataSet.setCircleHoleRadius(2.3f);
@@ -190,12 +161,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ImageView retry = findViewById(R.id.retry);
+        TabFragment3 fragment3 = new TabFragment3();
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDate();
-                getLocalForecast();
-                getFineDust();
+//                setDate();
+//                getFineDust();
+                finish();
+//                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+//                overridePendingTransition(0, 0);
             }
         });
     }
@@ -285,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String getNoPoint(String data) {
+    public String getNoPoint(String data) {
         if (!data.equals("")) {
             double n = Double.parseDouble(data);
             return Math.round(n) + "";
@@ -395,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 head.setPadding(0, 0, 0, 0);
                 head.setImageResource(R.drawable.head_sunny);
-                heart.setVisibility(View.VISIBLE);
+                heart.setVisibility(View.INVISIBLE);
                 icon.setImageResource(R.drawable.icon_cloudy);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
@@ -416,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 head.setPadding(0, 0, 0, 0);
                 head.setImageResource(R.drawable.head_sunny);
-                heart.setVisibility(View.VISIBLE);
+                heart.setVisibility(View.INVISIBLE);
                 icon.setImageResource(R.drawable.icon_cloudy);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
@@ -541,8 +516,9 @@ public class MainActivity extends AppCompatActivity {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         SimpleDateFormat sdf = new SimpleDateFormat("M월 d일 EEEE");
-        SimpleDateFormat sdf2 = new SimpleDateFormat("k");
+//        SimpleDateFormat sdf_today = new SimpleDateFormat("yyyy-MM-dd 12:00");
         String getDay = sdf.format(date);
+//        getToday = sdf_today.format(date);
 
         TextView textView = findViewById(R.id.Time);
         textView.setText(getDay);
@@ -566,6 +542,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("test","dust, " + t);
             }
         });
+        getLocalForecast();
     }
 
     private void setFineDust(String string) {
@@ -595,7 +572,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class WeekItem {
-
-    }
 }

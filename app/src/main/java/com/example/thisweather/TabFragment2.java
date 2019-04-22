@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.GsonBuilder;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -21,11 +23,11 @@ public class TabFragment2 extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.tab_fragment_2,container,false);
-        retrofit=new Retrofit.Builder()
-                .baseUrl("http://172.30.121.166:3000")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        View view = inflater.inflate(R.layout.tab_fragment_2,container,false);
+//        retrofit = new Retrofit.Builder()
+//                .baseUrl("http://117.16.231.66:7002/")
+//                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
+//                .build();
 
         return view;
     }
