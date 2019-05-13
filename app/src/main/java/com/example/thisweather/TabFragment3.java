@@ -87,17 +87,28 @@ public class TabFragment3 extends Fragment {
     }
 
     private void getTime(JsonArray array) {
-        String temp1, temp2;
+        String temp1, temp2, first;
+        first = array.get(0).getAsJsonObject().get("day").getAsString(); //첫번째 데이터의 day 값
         for (int i = 0; i < array.size(); i++){
             temp1 = array.get(i).getAsJsonObject().get("day").getAsString();
             temp2 = array.get(i).getAsJsonObject().get("hour").getAsString();
-            if (temp1.equals("1") && temp2.equals("12")){
-                tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
-                tomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
+            if (first.equals("0")){
+                if (temp1.equals("0") && temp2.equals("24")) {
+                    tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+                    tomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
+                } else if (temp1.equals("1") && temp2.equals("24")) {
+                    secondTomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+                    secondTomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
+                }
             }
-            else if (temp1.equals("2") && temp2.equals("12")){
-                secondTomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
-                secondTomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
+            else if (first.equals("1")) {
+                if (temp1.equals("1") && temp2.equals("12")) {
+                    tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+                    tomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
+                } else if (temp1.equals("2") && temp2.equals("12")) {
+                    secondTomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+                    secondTomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
+                }
             }
         }
         getWeekForecast();
