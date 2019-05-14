@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -173,6 +174,20 @@ public class MainActivity extends AppCompatActivity {
 //                overridePendingTransition(0, 0);
             }
         });
+        setNavigationView();
+    }
+
+    private void setNavigationView() {
+        ImageView setting = findViewById(R.id.iv_alarm_setting);
+        Intent intent = new Intent(MainActivity.this, MyAlarmActivity.class);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
+
+        //TODO setText"8시 30분"
     }
 
     private void setMain(JsonArray array) {
