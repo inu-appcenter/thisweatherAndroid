@@ -37,8 +37,8 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:lottie_imageAssetsFolder="assets"
+        app:lottie_imageAssetsFolder="tutorial1/"
         app:lottie_fileName="tutorial1.json"
         app:lottie_autoPlay="true"
-        app:lottie_loop="false"/>
+        app:lottie_loop="true"/>
 </RelativeLayout>

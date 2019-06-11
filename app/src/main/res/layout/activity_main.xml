@@ -52,12 +52,12 @@
     <ImageView
         android:id="@+id/back_under"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:src="@drawable/back_under"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHeight_percent="0.56"/>
 
     <ImageView
         android:id="@+id/heart"
@@ -112,11 +112,11 @@
         android:id="@+id/lion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="155dp"
         app:layout_constraintBottom_toTopOf="@id/weatherPager"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.35">
 
         <ImageView
             android:id="@+id/lion_body"
@@ -131,6 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="58dp"
+            android:layout_marginEnd="7dp"
             app:layout_constraintBottom_toBottomOf="@+id/lion_body"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +149,8 @@
         app:layout_constraintBottom_toTopOf="@+id/weatherPager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/back_under">
+        app:layout_constraintTop_toTopOf="@+id/back_under"
+        app:layout_constraintVertical_bias="0.6">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -219,9 +221,10 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/weatherPager"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:paddingTop="20dp"
+        app:layout_constraintHeight_percent="0.244"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

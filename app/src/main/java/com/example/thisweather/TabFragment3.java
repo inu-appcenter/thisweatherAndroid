@@ -94,7 +94,8 @@ public class TabFragment3 extends Fragment {
             temp2 = array.get(i).getAsJsonObject().get("hour").getAsString();
             if (first.equals("0")){
                 if (temp1.equals("0") && temp2.equals("24")) {
-                    tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+//                    tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+                    tomorrowTemp = array.get(i).getAsJsonObject().get("temp").getAsString();
                     tomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
                 } else if (temp1.equals("1") && temp2.equals("24")) {
                     secondTomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
@@ -103,7 +104,8 @@ public class TabFragment3 extends Fragment {
             }
             else if (first.equals("1")) {
                 if (temp1.equals("1") && temp2.equals("12")) {
-                    tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+//                    tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+                    tomorrowTemp = array.get(i).getAsJsonObject().get("temp").getAsString();
                     tomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
                 } else if (temp1.equals("2") && temp2.equals("12")) {
                     secondTomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
