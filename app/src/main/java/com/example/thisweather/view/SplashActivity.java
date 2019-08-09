@@ -1,12 +1,13 @@
-package com.example.thisweather;
+package com.example.thisweather.view;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.example.thisweather.R;
 
 public class SplashActivity extends Activity {
     @Override

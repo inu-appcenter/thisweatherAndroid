@@ -1,4 +1,4 @@
-package com.example.thisweather;
+package com.example.thisweather.view;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import com.dpro.widgets.WeekdaysPicker;
+import com.example.thisweather.R;
 
 public class InitialThirdFragment  extends Fragment {
     TextView AmPm;

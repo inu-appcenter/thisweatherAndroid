@@ -1,4 +1,4 @@
-package com.example.thisweather;
+package com.example.thisweather.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.thisweather.R;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,7 +20,7 @@ public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.ViewHolder> {
 
     ArrayList<WeekItem> data;
 
-    WeekAdapter(ArrayList<WeekItem> data){
+    public WeekAdapter(ArrayList<WeekItem> data){
         this.data = data;
     }
 
@@ -161,10 +163,10 @@ public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.ViewHolder> {
     }
 
 
-    static class WeekItem {
+    public static class WeekItem {
         private String temp, weather, hour;
 
-        String getTemp() {
+        public String getTemp() {
             return temp;
         }
 
@@ -176,7 +178,7 @@ public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.ViewHolder> {
             return hour;
         }
 
-        WeekItem(String temp, String weather, String hour) {
+        public WeekItem(String temp, String weather, String hour) {
             this.temp = temp;
             this.weather = weather;
             this.hour = hour;

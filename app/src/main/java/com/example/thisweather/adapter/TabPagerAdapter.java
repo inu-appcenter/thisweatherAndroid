@@ -1,8 +1,12 @@
-package com.example.thisweather;
+package com.example.thisweather.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.example.thisweather.view.InitialFirstFragment;
+import com.example.thisweather.view.InitialSecondFragment;
+import com.example.thisweather.view.InitialThirdFragment;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 

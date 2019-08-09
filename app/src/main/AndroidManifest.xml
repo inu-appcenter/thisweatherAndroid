@@ -10,17 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.MainActivity">
         </activity>
-        <activity android:name=".InitialActivity">
+        <activity android:name=".view.InitialActivity">
         </activity>
-        <activity android:name=".MyAlarmActivity">
-        </activity>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".view.MyAlarmActivity"/>
+        <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.AddAlarmActivity" />
     </application>
 </manifest>

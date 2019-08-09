@@ -1,4 +1,4 @@
-package com.example.thisweather;
+package com.example.thisweather.util;
 
 import com.google.gson.JsonObject;
 

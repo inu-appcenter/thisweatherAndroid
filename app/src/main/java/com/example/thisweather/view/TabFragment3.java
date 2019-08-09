@@ -1,4 +1,4 @@
-package com.example.thisweather;
+package com.example.thisweather.view;
 
 
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.thisweather.R;
+import com.example.thisweather.adapter.WeekAdapter;
+import com.example.thisweather.util.RetrofitService;
+import com.example.thisweather.view.MainActivity;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.google.gson.GsonBuilder;

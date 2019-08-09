@@ -1,4 +1,4 @@
-package com.example.thisweather;
+package com.example.thisweather.view;
 
 
 import android.content.BroadcastReceiver;
@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.thisweather.R;
 import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;

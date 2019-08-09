@@ -1,4 +1,4 @@
-package com.example.thisweather;
+package com.example.thisweather.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,8 +18,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.thisweather.R;
+import com.example.thisweather.adapter.PagerAdapter;
+import com.example.thisweather.adapter.TimeAdapter;
+import com.example.thisweather.util.RetrofitService;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -544,12 +547,15 @@ public class MainActivity extends AppCompatActivity {
         fineDust.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    String res = response.body().string();
-                    setFineDust(res);
-                    Log.d("test","dust, " + res);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(response.body() != null){
+                    try {
+                        String res = response.body().string();
+                        if(!res.equals("-"))
+                            setFineDust(res);
+                        Log.d("test","dust, " + res);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             @Override

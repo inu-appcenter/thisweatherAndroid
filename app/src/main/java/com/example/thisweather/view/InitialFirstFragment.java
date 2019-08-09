@@ -1,15 +1,18 @@
-package com.example.thisweather;
+package com.example.thisweather.view;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.airbnb.lottie.ImageAssetDelegate;
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieImageAsset;
+import com.example.thisweather.R;
 
 public class InitialFirstFragment  extends Fragment {
 
@@ -18,18 +21,12 @@ public class InitialFirstFragment  extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_initial_first, null);
 
-        LottieAnimationView animationView = view.findViewById(R.id.lav_tutorial1);
-        animationView.playAnimation();
-//        animationView.setImageAssetDelegate(new ImageAssetDelegate() {
-//            @Override public Bitmap fetchBitmap(LottieImageAsset asset) {
-//                if (downloadedBitmap == null) {
-//                     We don't have it yet. Lottie will keep
-//                     asking until we return a non-null bitmap.
-//                    return null;
-//                }
-//                return downloadedBitmap;
-//            }
-//        });
+//        LottieAnimationView animationView = view.findViewById(R.id.lav_tutorial1);
+//        animationView.playAnimation();
+
+        ImageView iv = view.findViewById(R.id.imageView);
+        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getBackground();
+        animationDrawable.start();
 
         return view;
     }

@@ -1,4 +1,4 @@
-package com.example.thisweather;
+package com.example.thisweather.view;
 
 
 import android.os.Bundle;
@@ -8,10 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.gson.GsonBuilder;
+import com.example.thisweather.R;
 
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TabFragment2 extends Fragment {
     Retrofit retrofit;

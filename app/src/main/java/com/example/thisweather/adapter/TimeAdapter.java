@@ -1,4 +1,4 @@
-package com.example.thisweather;
+package com.example.thisweather.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,13 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.thisweather.R;
+
 import java.util.ArrayList;
 
 public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
 
     ArrayList<TimeItem> data;
 
-    TimeAdapter(ArrayList<TimeItem> data){
+    public TimeAdapter(ArrayList<TimeItem> data){
         this.data = data;
     }
 
@@ -90,10 +92,10 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
     }
 
 
-    static class TimeItem {
+    public static class TimeItem {
         private String temp, weather, hour;
 
-        String getTemp() {
+        public String getTemp() {
             return temp;
         }
 
@@ -105,7 +107,7 @@ public class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.ViewHolder> {
             return hour;
         }
 
-        TimeItem(String temp, String weather, String hour) {
+        public TimeItem(String temp, String weather, String hour) {
             this.temp = temp;
             this.weather = weather;
             this.hour = hour;
