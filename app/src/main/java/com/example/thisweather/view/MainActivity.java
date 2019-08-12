@@ -2,6 +2,7 @@ package com.example.thisweather.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.example.thisweather.R;
 import com.example.thisweather.adapter.PagerAdapter;
 import com.example.thisweather.adapter.TimeAdapter;
+import com.example.thisweather.util.AlarmDBHandler;
 import com.example.thisweather.util.RetrofitService;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -51,10 +53,13 @@ public class MainActivity extends AppCompatActivity {
     RetrofitService service;
     DrawerLayout drawer;
     int dust;
+    AlarmDBHandler mHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mHandler = AlarmDBHandler.open(this);
 
         setDate();
         setToolbar();
@@ -190,7 +195,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //TODO setText"8시 30분"
+        Cursor cursor = mHandler.select();
+        cursor.moveToFirst();
+        String ampm = cursor.getString(2);
+        String hour = cursor.getString(3);
+//        Log.d("day", "ampm: " + ampm + " hour: " + hour);
+        TextView tv_ampm = findViewById(R.id.tv_ampm);
+        TextView tv_time = findViewById(R.id.tv_time);
+        tv_ampm.setText(ampm);
+        tv_time.setText(hour);
     }
 
     private void setMain(JsonArray array) {
@@ -593,4 +606,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.close();
+    }
 }

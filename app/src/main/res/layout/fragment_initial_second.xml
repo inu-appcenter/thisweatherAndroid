@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_text1"
         android:layout_marginTop="59.3dp"
         android:layout_marginLeft="32.1dp"
         android:textSize="28sp"
@@ -19,8 +20,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_text2"
-        android:layout_below="@id/tv_text1"
         android:layout_marginTop="5.8dp"
         android:layout_marginLeft="32.1dp"
         android:textSize="13sp"
@@ -30,15 +29,11 @@
         android:fontFamily="@font/sf_pro_text_regular"
         />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lav_tutorial2"
-        android:layout_below="@+id/tv_text2"
-        android:layout_marginTop="59.5dp"
-        android:layout_centerHorizontal="true"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:lottie_imageAssetsFolder="tutorial2/"
-        app:lottie_fileName="tutorial2.json"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
-</RelativeLayout>
+        android:id="@+id/iv_tutorial2"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/tutorial2"/>
+</LinearLayout>
