@@ -98,21 +98,39 @@ public class MainThirdFragment extends Fragment {
             temp2 = array.get(i).getAsJsonObject().get("hour").getAsString();
             if (first.equals("0")){
                 if (temp1.equals("0") && temp2.equals("24")) {
-//                    tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
-                    tomorrowTemp = array.get(i).getAsJsonObject().get("temp").getAsString();
+                    String tmn = array.get(i).getAsJsonObject().get("tmn").getAsString();
+                    String tmx = array.get(i).getAsJsonObject().get("tmx").getAsString();
+                    if (!tmn.equals("-999.0") && !tmx.equals("-999.0"))
+                        tomorrowTemp = divisionTwo(tmn, tmx);
+                    else
+                        tomorrowTemp = array.get(i).getAsJsonObject().get("temp").getAsString();
                     tomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
                 } else if (temp1.equals("1") && temp2.equals("24")) {
-                    secondTomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+                    String tmn = array.get(i).getAsJsonObject().get("tmn").getAsString();
+                    String tmx = array.get(i).getAsJsonObject().get("tmx").getAsString();
+                    if (!tmn.equals("-999.0") && !tmx.equals("-999.0"))
+                        secondTomorrowTemp = divisionTwo(tmn, tmx);
+                    else
+                        secondTomorrowTemp = array.get(i).getAsJsonObject().get("temp").getAsString();
                     secondTomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
                 }
             }
             else if (first.equals("1")) {
                 if (temp1.equals("1") && temp2.equals("12")) {
-//                    tomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
-                    tomorrowTemp = array.get(i).getAsJsonObject().get("temp").getAsString();
+                    String tmn = array.get(i).getAsJsonObject().get("tmn").getAsString();
+                    String tmx = array.get(i).getAsJsonObject().get("tmx").getAsString();
+                    if (!tmn.equals("-999.0") && !tmx.equals("-999.0"))
+                        tomorrowTemp = divisionTwo(tmn, tmx);
+                    else
+                        tomorrowTemp = array.get(i).getAsJsonObject().get("temp").getAsString();
                     tomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
                 } else if (temp1.equals("2") && temp2.equals("12")) {
-                    secondTomorrowTemp = divisionTwo(array.get(i).getAsJsonObject().get("tmn").getAsString(), array.get(i).getAsJsonObject().get("tmx").getAsString());
+                    String tmn = array.get(i).getAsJsonObject().get("tmn").getAsString();
+                    String tmx = array.get(i).getAsJsonObject().get("tmx").getAsString();
+                    if (!tmn.equals("-999.0") && !tmx.equals("-999.0"))
+                        secondTomorrowTemp = divisionTwo(tmn, tmx);
+                    else
+                        secondTomorrowTemp = array.get(i).getAsJsonObject().get("temp").getAsString();
                     secondTomorrowWeather = array.get(i).getAsJsonObject().get("wfKor").getAsString();
                 }
             }

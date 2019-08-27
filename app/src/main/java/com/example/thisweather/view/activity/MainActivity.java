@@ -33,6 +33,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.victor.loading.rotate.RotateLoading;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -48,6 +49,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    RotateLoading loading;
     Retrofit retrofit;
     RetrofitService service;
     DrawerLayout drawer;
@@ -57,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        loading = findViewById(R.id.rotateloading);
+        loading.start();
 
         setDate();
         setToolbar();
@@ -257,6 +262,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("sensetemp", getWindChill(data[0], data[4]) + "°");
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+        loading.stop();
     }
 
     private String getWindChill(String data1, String data2) {
@@ -329,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
                 head.setImageResource(R.drawable.head_cloudy);
                 heart.setVisibility(View.INVISIBLE);
                 menu.setImageResource(R.drawable.icon_menu_white);
-                time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
+                time.setTextColor(ContextCompat.getColor(this, R.color.white));
                 retry.setImageResource(R.drawable.icon_retry_white);
                 lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
@@ -386,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
                 icon.setImageResource(R.drawable.icon_cloudy);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
-                time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
+                time.setTextColor(ContextCompat.getColor(this, R.color.white));
                 retry.setImageResource(R.drawable.icon_retry_white);
                 lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
@@ -407,7 +414,7 @@ public class MainActivity extends AppCompatActivity {
                 icon.setImageResource(R.drawable.icon_cloudy);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
-                time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
+                time.setTextColor(ContextCompat.getColor(this, R.color.white));
                 retry.setImageResource(R.drawable.icon_retry_white);
                 lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
@@ -428,7 +435,7 @@ public class MainActivity extends AppCompatActivity {
                 icon.setImageResource(R.drawable.icon_rain);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
-                time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
+                time.setTextColor(ContextCompat.getColor(this, R.color.white));
                 retry.setImageResource(R.drawable.icon_retry_white);
                 lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
                 lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
@@ -449,7 +456,7 @@ public class MainActivity extends AppCompatActivity {
                 icon.setImageResource(R.drawable.icon_rainsnow);
                 textView.setText(data);
                 menu.setImageResource(R.drawable.icon_menu_white);
-                time.setTextColor(ContextCompat.getColor(this, R.color.backgroundDefault));
+                time.setTextColor(ContextCompat.getColor(this, R.color.white));
                 retry.setImageResource(R.drawable.icon_retry_white);
                 lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));
                 lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRainy));

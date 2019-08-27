@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/aritaum_semi_bold"
-            android:textColor="#262626"
+            android:textColor="@color/mainText"
             android:textSize="19sp" />
 
         <ImageView
@@ -202,7 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aritaum_semi_bold"
-                android:textColor="#000000"
+                android:textColor="@color/subText"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -212,7 +212,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:fontFamily="@font/aritaum_semi_bold"
-            android:textColor="#262626"
+            android:textColor="@color/mainText"
             android:textSize="72sp" />
     </LinearLayout>
 
@@ -263,6 +263,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
     </android.support.v4.view.ViewPager>
+
+    <com.victor.loading.rotate.RotateLoading
+        android:id="@+id/rotateloading"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:loading_width="5dp"
+        app:loading_color="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.4"/>
 
 </android.support.constraint.ConstraintLayout>
 

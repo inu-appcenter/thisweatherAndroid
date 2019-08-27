@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffffff"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_marginTop="59.3dp"
         android:layout_marginLeft="32.3dp"
         android:textSize="28sp"
-        android:textColor="#262626"
+        android:textColor="@color/mainText"
         android:text="반가워요\nINU 이런날-씨"
         android:fontFamily="@font/sf_pro_text_semibold"
         />

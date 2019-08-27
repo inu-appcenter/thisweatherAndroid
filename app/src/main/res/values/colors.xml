@@ -7,7 +7,7 @@
     <color name="backgroundRainy">#5B6F8C</color>
     <color name="backgroundSnowy">#CEEEF4</color>
     <color name="backgroundDust">#8b8266</color>
-    <color name="backgroundDefault">#FFFFFF</color>
+    <color name="white">#ffffff</color>
     <color name="subText">#000000</color>
     <color name="statusSunny"> #cb9c15</color>
     <color name="statusBlue">#0746a9</color>

@@ -82,7 +82,7 @@ public class InitialActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 startActivity(intent);
-                editor.putBoolean("init", false); //TODO true로
+                editor.putBoolean("init", true); //TODO true로
                 editor.apply();
                 finish();
             }
