@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">INU 이런날씨</string>
     <string name="version">1.0.0</string>
-    <!--TODO 업데이트 날짜-->
-    <string name="update_date">2019/08/27</string>
+    <string name="update_date">2018/02/22</string>
     <string name="notification_channel_id">notification_channel_id</string>
     <string name="notification_channel_name">notification_channel_name</string>
 </resources>

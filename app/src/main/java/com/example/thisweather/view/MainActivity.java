@@ -1,7 +1,9 @@
 package com.example.thisweather.view;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
@@ -23,7 +25,10 @@ import android.widget.TextView;
 import com.example.thisweather.R;
 import com.example.thisweather.adapter.PagerAdapter;
 import com.example.thisweather.adapter.TimeAdapter;
-import com.example.thisweather.network.RetrofitService;
+import com.example.thisweather.util.AlarmBroadcastReceiver;
+import com.example.thisweather.util.AlarmDBHandler;
+import com.example.thisweather.util.JobSchedulerStart;
+import com.example.thisweather.util.RetrofitService;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -175,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ImageView retry = findViewById(R.id.retry);
-        MainThirdFragment fragment3 = new MainThirdFragment();
+        TabFragment3 fragment3 = new TabFragment3();
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

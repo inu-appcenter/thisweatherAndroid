@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#ffffff">
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:textSize="17sp"
+        android:textColor="#030303"
+        android:fontFamily="@font/sf_pro_text_semibold"
+        android:text="MY알람"/>
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:layout_marginTop="12.7dp"
+        android:layout_marginLeft="12dp"
+        android:padding="4dp"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textview"
+        android:layout_marginTop="11.2dp"
+        android:paddingBottom="11.2dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </ScrollView>
+    <ImageView
+        android:id="@+id/iv_add_alarm"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:src="@drawable/button_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="10dp"/>
+</RelativeLayout>

@@ -12,17 +12,17 @@ import com.example.thisweather.R;
 
 import retrofit2.Retrofit;
 
-public class MainSecondFragment extends Fragment {
+public class TabFragment2 extends Fragment {
     Retrofit retrofit;
 
-    public static MainSecondFragment newInstance(){return new MainSecondFragment();}
+    public static TabFragment2 newInstance(){return new TabFragment2();}
     @Override
     public void onCreate(@Nullable Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main_second,container,false);
+        View view = inflater.inflate(R.layout.tab_fragment_2,container,false);
 //        retrofit = new Retrofit.Builder()
 //                .baseUrl("http://117.16.231.66:7002/")
 //                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))

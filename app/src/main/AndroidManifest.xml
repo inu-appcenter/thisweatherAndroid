@@ -15,11 +15,32 @@
         </activity>
         <activity android:name=".view.InitialActivity">
         </activity>
+        <activity android:name=".view.MyAlarmActivity"/>
         <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.AddAlarmActivity" />
+        <service
+            android:name=".util.NotificationJobFireBaseService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+        <receiver
+            android:name=".util.AlarmBroadcastReceiver"/>
+        <receiver android:name=".util.DeviceBootReceiver"
+            android:directBootAware="true"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

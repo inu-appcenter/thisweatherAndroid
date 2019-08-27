@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.thisweather.view.InitialFirstFragment;
 import com.example.thisweather.view.InitialSecondFragment;
+import com.example.thisweather.view.InitialThirdFragment;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
