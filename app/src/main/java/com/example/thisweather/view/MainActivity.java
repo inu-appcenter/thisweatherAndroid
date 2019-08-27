@@ -1,7 +1,9 @@
 package com.example.thisweather.view;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
@@ -23,7 +25,9 @@ import android.widget.TextView;
 import com.example.thisweather.R;
 import com.example.thisweather.adapter.PagerAdapter;
 import com.example.thisweather.adapter.TimeAdapter;
+import com.example.thisweather.util.AlarmBroadcastReceiver;
 import com.example.thisweather.util.AlarmDBHandler;
+import com.example.thisweather.util.JobSchedulerStart;
 import com.example.thisweather.util.RetrofitService;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -72,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
         service = retrofit.create(RetrofitService.class);
 
         getFineDust();
+
+//        AlarmBroadcastReceiver receiver = new AlarmBroadcastReceiver();
+//        IntentFilter filter = new IntentFilter();
+//        registerReceiver(receiver, filter);
+
+//        JobSchedulerStart.start(this);
     }
 
     private void setViewpager() {
@@ -196,14 +206,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Cursor cursor = mHandler.select();
-        cursor.moveToFirst();
-        String ampm = cursor.getString(2);
-        String hour = cursor.getString(3);
+        if (cursor.moveToNext()){
+            String ampm = cursor.getString(2);
+            String hour = cursor.getString(3);
 //        Log.d("day", "ampm: " + ampm + " hour: " + hour);
-        TextView tv_ampm = findViewById(R.id.tv_ampm);
-        TextView tv_time = findViewById(R.id.tv_time);
-        tv_ampm.setText(ampm);
-        tv_time.setText(hour);
+            TextView tv_ampm = findViewById(R.id.tv_ampm);
+            TextView tv_time = findViewById(R.id.tv_time);
+            tv_ampm.setText(ampm);
+            tv_time.setText(hour);
+        }
     }
 
     private void setMain(JsonArray array) {
