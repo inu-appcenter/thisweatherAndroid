@@ -27,7 +27,7 @@ public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chart, null);
         return new ViewHolder(v);
     }
 

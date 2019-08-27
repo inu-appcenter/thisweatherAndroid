@@ -1,10 +1,7 @@
-package com.example.thisweather.view;
+package com.example.thisweather.view.activity;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
@@ -23,12 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.thisweather.R;
-import com.example.thisweather.adapter.PagerAdapter;
+import com.example.thisweather.adapter.MainPagerAdapter;
 import com.example.thisweather.adapter.TimeAdapter;
-import com.example.thisweather.util.AlarmBroadcastReceiver;
-import com.example.thisweather.util.AlarmDBHandler;
-import com.example.thisweather.util.JobSchedulerStart;
-import com.example.thisweather.util.RetrofitService;
+import com.example.thisweather.network.RetrofitService;
+import com.example.thisweather.view.fragment.MainThirdFragment;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -57,13 +52,11 @@ public class MainActivity extends AppCompatActivity {
     RetrofitService service;
     DrawerLayout drawer;
     int dust;
-    AlarmDBHandler mHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mHandler = AlarmDBHandler.open(this);
 
         setDate();
         setToolbar();
@@ -88,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.weatherPager);
 
         FragmentManager fm = getSupportFragmentManager();
-        PagerAdapter pagerAdapter = new PagerAdapter(fm, 3);
+        MainPagerAdapter pagerAdapter = new MainPagerAdapter(fm, 3);
 
         viewPager.setAdapter(pagerAdapter);
         viewPager.setCurrentItem(0);
@@ -180,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ImageView retry = findViewById(R.id.retry);
-        TabFragment3 fragment3 = new TabFragment3();
+        MainThirdFragment fragment3 = new MainThirdFragment();
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,29 +185,6 @@ public class MainActivity extends AppCompatActivity {
 //                overridePendingTransition(0, 0);
             }
         });
-        setNavigationView();
-    }
-
-    private void setNavigationView() {
-        ImageView setting = findViewById(R.id.iv_alarm_setting);
-        Intent intent = new Intent(MainActivity.this, MyAlarmActivity.class);
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intent);
-            }
-        });
-
-        Cursor cursor = mHandler.select();
-        if (cursor.moveToNext()){
-            String ampm = cursor.getString(2);
-            String hour = cursor.getString(3);
-//        Log.d("day", "ampm: " + ampm + " hour: " + hour);
-            TextView tv_ampm = findViewById(R.id.tv_ampm);
-            TextView tv_time = findViewById(R.id.tv_time);
-            tv_ampm.setText(ampm);
-            tv_time.setText(hour);
-        }
     }
 
     private void setMain(JsonArray array) {
@@ -615,11 +585,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mHandler.close();
     }
 }

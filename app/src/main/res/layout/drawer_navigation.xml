@@ -36,59 +36,17 @@
                 />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_alarm_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_alarm_setting"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="38.9dp"
-            android:layout_marginRight="10.3dp"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp"
             android:textColor="#5d5d5d"
-            android:text="설정된 기상시간에 맞춰\n푸쉬알람으로 날씨정보가 제공됩니다."
+            android:text="설정된 기상시간에 맞춰\n푸쉬알람으로 날씨정보가 제공됩니다.\n\n*추후 업데이트 예정"
             android:layout_below="@+id/image1"
             android:layout_marginTop="2.9dp"
             android:layout_marginLeft="18.1dp"
             android:fontFamily="@font/sf_pro_text_regular"
             />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ll_time"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="25.8dp"
-            android:layout_marginBottom="15.3dp"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tv_ampm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="9sp"
-                android:textColor="#262626"
-                android:gravity="center_horizontal"
-                android:text="오전"
-                android:layout_marginRight="7.6dp"
-                android:layout_marginBottom="6.6dp"
-                android:fontFamily="@font/sf_pro_text_semibold"
-                />
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textColor="#262626"
-                android:gravity="center_horizontal"
-                android:text="8시 30분"
-                android:fontFamily="@font/sf_pro_text_semibold"
-                />
-        </LinearLayout>
     </RelativeLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -154,15 +112,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="9sp"
                     android:textColor="@color/mainText"
-                    android:text="컴퓨터공학부 17 전예린"
-                    android:layout_marginBottom="6.1dp"
-                    android:fontFamily="@font/sf_pro_text_regular"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="9sp"
-                    android:textColor="@color/mainText"
                     android:text="정보통신공학과 16 최아현"
                     android:layout_marginBottom="6.1dp"
                     android:fontFamily="@font/sf_pro_text_regular"
@@ -173,6 +122,15 @@
                     android:textSize="9sp"
                     android:textColor="@color/mainText"
                     android:text="임베디드시스템공학과 16 장민우"
+                    android:layout_marginBottom="6.1dp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="9sp"
+                    android:textColor="@color/mainText"
+                    android:text="컴퓨터공학부 17 전예린"
                     android:layout_marginBottom="6.1dp"
                     android:fontFamily="@font/sf_pro_text_regular"
                     />

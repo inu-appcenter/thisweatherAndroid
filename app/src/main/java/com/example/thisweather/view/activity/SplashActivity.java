@@ -1,4 +1,4 @@
-package com.example.thisweather.view;
+package com.example.thisweather.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.example.thisweather.view;
+package com.example.thisweather.view.fragment;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;

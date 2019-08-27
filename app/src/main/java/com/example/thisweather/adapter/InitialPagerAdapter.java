@@ -4,16 +4,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.thisweather.view.InitialFirstFragment;
-import com.example.thisweather.view.InitialSecondFragment;
-import com.example.thisweather.view.InitialThirdFragment;
+import com.example.thisweather.view.fragment.InitialFirstFragment;
+import com.example.thisweather.view.fragment.InitialSecondFragment;
 
-public class TabPagerAdapter extends FragmentStatePagerAdapter {
+public class InitialPagerAdapter extends FragmentStatePagerAdapter {
 
     // Count number of tabs
-    private int tabCount = 3;
+    private int tabCount = 2;
 
-    public TabPagerAdapter(FragmentManager fm) {
+    public InitialPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -28,9 +27,6 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 InitialSecondFragment tabFragment2 = new InitialSecondFragment();
                 return tabFragment2;
-            case 2:
-                InitialThirdFragment tabFragment3 = new InitialThirdFragment();
-                return tabFragment3;
             default:
                 return null;
         }
