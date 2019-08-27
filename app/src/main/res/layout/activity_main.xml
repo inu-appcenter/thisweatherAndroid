@@ -57,86 +57,120 @@
         android:src="@drawable/back_under"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.56"/>
+        app:layout_constraintHeight_percent="0.53"/>
 
     <ImageView
         android:id="@+id/heart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/lion"
-        android:layout_marginBottom="164dp"
-        app:layout_constraintBottom_toTopOf="@+id/back_under"
-        app:layout_constraintRight_toLeftOf="@id/lion" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.18"
+        app:layout_constraintHorizontal_bias="0.23"/>
 
     <ImageView
         android:id="@+id/wind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8.4dp"
-        app:layout_constraintBottom_toTopOf="@+id/back_under"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitStart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintVertical_bias="0.145"/>
 
     <ImageView
         android:id="@+id/snow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="49.8dp"
-        android:layout_marginEnd="48.8dp"
-        android:layout_marginBottom="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/back_under"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.75"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintVertical_bias="0.17"/>
 
     <ImageView
         android:id="@+id/rain"
-        android:layout_width="251dp"
-        android:layout_height="252dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="53.6dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="180dp"
-        app:layout_constraintBottom_toTopOf="@+id/weatherPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_percent="0.38"
+        app:layout_constraintVertical_bias="0.13" />
 
     <ImageView
         android:id="@+id/dust"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="63.5dp"
-        app:layout_constraintBottom_toTopOf="@+id/back_under"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/lion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/weatherPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.35">
+        app:layout_constraintHeight_percent="0.255"
+        app:layout_constraintVertical_bias="0.145"/>
 
-        <ImageView
-            android:id="@+id/lion_body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <!--<android.support.constraint.ConstraintLayout-->
+        <!--android:id="@+id/lion"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/weatherPager"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.35">-->
 
-        <ImageView
-            android:id="@+id/lion_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="58dp"
-            android:layout_marginEnd="7dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lion_body"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+        <!--<ImageView-->
+            <!--android:id="@+id/lion_body"-->
+            <!--android:src="@drawable/body_5"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/lion_head"-->
+            <!--android:src="@drawable/head_snow"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="58dp"-->
+            <!--android:layout_marginEnd="7dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@+id/lion_body"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+    <!--</android.support.constraint.ConstraintLayout>-->
+
+    <ImageView
+        android:id="@+id/lion_body"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.148"
+        app:layout_constraintVertical_bias="0.4"/>
+
+    <ImageView
+        android:id="@+id/lion_head"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.24"
+        app:layout_constraintVertical_bias="0.225"/>
 
     <LinearLayout
         android:id="@+id/rl_temp"
