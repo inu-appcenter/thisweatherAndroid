@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.thisweather.view.TabFragment1;
-import com.example.thisweather.view.TabFragment2;
-import com.example.thisweather.view.TabFragment3;
+import com.example.thisweather.view.MainFirstFragment;
+import com.example.thisweather.view.MainSecondFragment;
+import com.example.thisweather.view.MainThirdFragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
     int mNumOfTabs;
@@ -20,13 +20,13 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public  Fragment getItem(int position){
         switch(position){
             case 0:
-                TabFragment1 tab1 = new TabFragment1();
+                MainFirstFragment tab1 = new MainFirstFragment();
                 return tab1;
             case 1:
-                TabFragment2 tab2 = new TabFragment2();
+                MainSecondFragment tab2 = new MainSecondFragment();
                 return tab2;
             case 2:
-                TabFragment3 tab3 = new TabFragment3();
+                MainThirdFragment tab3 = new MainThirdFragment();
                 return tab3;
             default:
                     return null;

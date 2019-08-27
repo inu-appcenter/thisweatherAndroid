@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.thisweather.R;
 import com.example.thisweather.adapter.WeekAdapter;
-import com.example.thisweather.util.RetrofitService;
-import com.example.thisweather.view.MainActivity;
+import com.example.thisweather.network.RetrofitService;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.google.gson.GsonBuilder;
@@ -29,7 +28,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class TabFragment3 extends Fragment {
+public class MainThirdFragment extends Fragment {
     Retrofit retrofit;
     RetrofitService service;
     JsonArray array;
@@ -58,7 +57,7 @@ public class TabFragment3 extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab_fragment_3,container,false);
+        View view = inflater.inflate(R.layout.fragment_main_third,container,false);
         Log.d("testt", "onCreateView");
 
         recyclerView = view.findViewById(R.id.rv_week);

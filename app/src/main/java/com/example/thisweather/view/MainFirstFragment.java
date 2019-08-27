@@ -16,12 +16,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.thisweather.R;
-import com.google.gson.GsonBuilder;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class TabFragment1 extends Fragment {
+public class MainFirstFragment extends Fragment {
     View view;
     TextView max, min, windspeed, rainfall, sensetemp, dust;
     String d_max, d_min, d_windspeed, d_rainfall, d_sensetemp, d_dust;
@@ -36,7 +32,7 @@ public class TabFragment1 extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.tab_fragment_1,container,false);
+        view = inflater.inflate(R.layout.fragment_,container,false);
 
         max = view.findViewById(R.id.tv_maxtemp);
         min = view.findViewById(R.id.tv_mintemp);
