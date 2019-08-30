@@ -7,14 +7,15 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface RetrofitService {
+    String baseUrl = "http://117.16.191.242:7004/";
 
     @GET("midterm")
-    public Call<JsonObject> weekForecast();
+    Call<JsonObject> weekForecast();
 
     @GET("weather")
-    public Call<JsonObject> localForecast();
+    Call<JsonObject> localForecast();
 
     @GET("PM10")
-    public Call<ResponseBody> fineDust();
+    Call<ResponseBody> fineDust();
 
 }
