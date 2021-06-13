@@ -264,24 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusBlue));
                 break;
             }
-            case "맑음": {
-                relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSunny));
-                head.setPadding(0, 0, 0, 0);
-                head.setImageResource(R.drawable.head_sunny);
-                heart.setVisibility(View.VISIBLE);
-                icon.setImageResource(R.drawable.icon_sunny);
-                textView.setText(data);
-                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainOrange));
-                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainOrange));
-                info.setTextColor(ContextCompat.getColor(this, R.color.mainOrange));
-                info.setText("기적같이 맑은 날");
-                wind.setVisibility(View.INVISIBLE);
-                snow.setVisibility(View.INVISIBLE);
-                rain.setVisibility(View.INVISIBLE);
-                dust.setVisibility(View.INVISIBLE);
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusSunny));
-                break;
-            }
+            case "맑음":
             case "구름 조금": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSunny));
                 head.setPadding(0, 0, 0, 0);
@@ -300,27 +283,7 @@ public class MainActivity extends AppCompatActivity {
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusSunny));
                 break;
             }
-            case "구름 많음": {
-                relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
-                head.setPadding(0, 0, 0, 0);
-                head.setImageResource(R.drawable.head_sunny);
-                heart.setVisibility(View.INVISIBLE);
-                icon.setImageResource(R.drawable.icon_cloudy);
-                textView.setText(data);
-                menu.setImageResource(R.drawable.icon_menu_white);
-                time.setTextColor(ContextCompat.getColor(this, R.color.white));
-                retry.setImageResource(R.drawable.icon_retry_white);
-                lineLeft.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
-                lineRight.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
-                info.setTextColor(ContextCompat.getColor(this, R.color.mainBlue));
-                info.setText("꾸리꾸리 흐린 날");
-                wind.setVisibility(View.INVISIBLE);
-                snow.setVisibility(View.INVISIBLE);
-                rain.setVisibility(View.INVISIBLE);
-                dust.setVisibility(View.INVISIBLE);
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.statusBlue));
-                break;
-            }
+            case "구름 많음":
             case "흐림": {
                 relativeLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.mainBlue));
                 head.setPadding(0, 0, 0, 0);
@@ -484,8 +447,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFineDust(String string) {
+
         Log.d("MainActivity", "setFineDust, " + string);
-        dust = Integer.parseInt(string);
+        dust = 50; //Integer.parseInt(string);
         Intent intent = new Intent("dust");
         if (dust <= 15){
             intent.putExtra("dust", "좋음");
